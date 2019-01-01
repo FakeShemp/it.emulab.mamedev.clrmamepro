@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>it.emulab.mamedev.clrmamepro</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <name>clrmamepro</name>
+    <summary>clrmamepro is a ROM manager and modifier for Windows</summary>
+    <description>
+        <p>clrmamepro manages and modifies your ROM files so that they can be easily used with any emulator. It includes management and datting tools to help with nearly any ROM-based emulation.</p>
+    </description>
+    <url type="homepage">https://mamedev.emulab.it/clrmamepro</url>
+    <url type="help">https://mamedev.emulab.it/clrmamepro/docs/index.htm</url>
+    <launchable>it.emulab.mamedev.clrmamepro.desktop</launchable>
+    <releases>
+      <release date="2018-08-21" version="4.035"></release>
+      <release date="2018-02-20" version="4.034"></release>
+    </releases>
+    <project_license>LicenseRef-proprietary</project_license>
+    <developer_name>Roman Scherzer</developer_name>
+    <update_contact>sakcheen+flathub_AT_gmail.com</update_contact>
+    <content_rating type="oars-1.1"></content_rating>
+</component>

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=clrmamepro
+Type=Application
+Comment=ROM manager and manipulator
+Exec=clrmamepro %U
+StartupNotify=true
+Terminal=false
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;
+Categories=System;Emulator;
+Keywords=Emulator;Editor;Manager;
+Icon=it.emulab.mamedev.clrmamepro

@@ -1,0 +1,119 @@
+app-id: it.emulab.mamedev.clrmamepro
+runtime: org.winepak.Platform
+runtime-version: 3.0
+sdk: org.winepak.Sdk
+command: clrmamepro
+tags:
+  - proprietary
+finish-args:
+  - --socket=x11
+  - --share=ipc
+  - --allow=multiarch
+  - --filesystem=host
+add-extensions:
+  org.winepak.Platform.Compat32:
+    directory: lib/32bit
+    version: 3.0
+    add-ld-path: lib
+    no-autodownload: false
+modules:
+  - name: setup-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/32bit
+      - ln -s /app/lib/32bit/lib/ld-linux.so.2 /app/lib/ld-linux.so.2
+
+  - name: setup-wine-compat32
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/wine-32bit
+
+  - name: clrmamepro
+    modules:
+      - p7z.yaml
+    buildsystem: simple
+    build-commands:
+      - install -d /app/bin
+      - install apply_extra /app/bin
+      - install clrmamepro /app/bin
+      - install -Dm644 it.emulab.mamedev.clrmamepro.appdata.xml /app/share/appdata/it.emulab.mamedev.clrmamepro.appdata.xml
+      - install -Dm644 it.emulab.mamedev.clrmamepro.desktop /app/share/applications/it.emulab.mamedev.clrmamepro.desktop
+      - install -Dm644 it.emulab.mamedev.clrmamepro.48x48.png /app/share/icons/hicolor/48x48/apps/it.emulab.mamedev.clrmamepro.png
+      - install -Dm644 it.emulab.mamedev.clrmamepro.32x32.png /app/share/icons/hicolor/32x32/apps/it.emulab.mamedev.clrmamepro.png
+    sources:
+      - type: extra-data
+        only-arches:
+          - x86_64
+        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4035_64.zip
+        sha256: 000e03359ef4200ff16ddbab4e2495c9bd22209ac358effe6f6059e0f7b11df5
+        size: 6168821
+        filename: clrmamepro.zip
+      - type: extra-data
+        only-arches:
+          - i386
+        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4035_32.zip
+        sha256: 3debfd1bdfa354e34863deca6097222e5c0b6313ac74c55112713ae6ac23c1a3
+        size: 5519914
+        filename: clrmamepro.zip
+      - type: extra-data
+        only-arches:
+          - i386
+          - x86_64
+        url: https://www.7-zip.org/a/7z1805-extra.7z
+        sha256: a16ecc3765d4d439105511de1fc2c97687b789774f91eaa880869763cc689080
+        size: 923870
+        filename: 7zip.7z
+      - type: script
+        dest-filename: apply_extra
+        commands:
+          - mkdir -p /app/extra/clrmamepro
+          - unzip -qq -d /app/extra/clrmamepro clrmamepro.zip
+          - rm clrmamepro.zip
+          -
+          - mkdir -p /app/extra/7zip
+          - 7z x -o"/app/extra/7zip" 7zip.7z
+          - rm 7zip.7z
+      - type: script
+        only-arches:
+          - x86_64
+        dest-filename: clrmamepro
+        commands:
+          - export WINEARCH=win64
+          -
+          # clrmamepro writes it's config files in the current directory
+          # Running files in /app/extra wont work, instead make a copy to
+          # /var/data a.k.a $XDG_DATA_HOME
+          - mkdir -p /var/data/clrmamepro
+          - cp -a /app/extra/clrmamepro /var/data
+          - cp -a /app/extra/7zip/x64/7za.exe /var/data/clrmamepro/7z.exe
+          - cp -a /app/extra/7zip/x64/7za.dll /app/extra/7zip/x64/7zxa.dll /var/data/clrmamepro
+          -
+          - wineboot
+          -
+          - wine64 /var/data/clrmamepro/cmpro64.exe "$@"
+      - type: script
+        only-arches:
+          - i386
+        dest-filename: clrmamepro
+        commands:
+          - export WINEARCH=win32
+          -
+          # clrmamepro writes it's config files in the current directory
+          # Running files in /app/extra wont work, instead make a copy to
+          # /var/data a.k.a $XDG_DATA_HOME
+          - mkdir -p /var/data/clrmamepro
+          - cp -a /app/extra/clrmamepro /var/data
+          - cp -a /app/extra/7zip/7za.exe /var/data/clrmamepro/7z.exe
+          - cp -a /app/extra/7zip/7za.dll /app/extra/7zip/7zxa.dll /var/data/clrmamepro
+          -
+          - wineboot
+          -
+          - wine /var/data/clrmamepro/cmpro.exe "$@"
+      - type: file
+        path: it.emulab.mamedev.clrmamepro.appdata.xml
+      - type: file
+        path: it.emulab.mamedev.clrmamepro.desktop
+      - type: file
+        path: icons/it.emulab.mamedev.clrmamepro.48x48.png
+      - type: file
+        path: icons/it.emulab.mamedev.clrmamepro.32x32.png
