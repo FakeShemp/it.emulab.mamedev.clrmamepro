@@ -1,6 +1,6 @@
 app-id: it.emulab.mamedev.clrmamepro
 runtime: org.winepak.Platform
-runtime-version: 3.0
+runtime-version: '3.0'
 sdk: org.winepak.Sdk
 command: clrmamepro
 tags:
@@ -13,7 +13,7 @@ finish-args:
 add-extensions:
   org.winepak.Platform.Compat32:
     directory: lib/32bit
-    version: 3.0
+    version: '3.0'
     add-ld-path: lib
     no-autodownload: false
 modules:
@@ -59,9 +59,9 @@ modules:
         only-arches:
           - i386
           - x86_64
-        url: https://www.7-zip.org/a/7z1805-extra.7z
-        sha256: a16ecc3765d4d439105511de1fc2c97687b789774f91eaa880869763cc689080
-        size: 923870
+        url: https://www.7-zip.org/a/7z1900-extra.7z
+        sha256: af6eca1c8578df776189ee7785ab5d21525e42590f788c4e82e961a36c3a5306
+        size: 929117
         filename: 7zip.7z
       - type: script
         dest-filename: apply_extra
@@ -117,3 +117,4 @@ modules:
         path: icons/it.emulab.mamedev.clrmamepro.48x48.png
       - type: file
         path: icons/it.emulab.mamedev.clrmamepro.32x32.png
+
