@@ -44,16 +44,16 @@ modules:
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4035_64.zip
-        sha256: 000e03359ef4200ff16ddbab4e2495c9bd22209ac358effe6f6059e0f7b11df5
-        size: 6168821
+        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4036_64.zip
+        sha256: a468913689d20030e3115849f09270a4281b3116d046de5fc349857a2bb5c7cb
+        size: 6150100
         filename: clrmamepro.zip
       - type: extra-data
         only-arches:
           - i386
-        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4035_32.zip
-        sha256: 3debfd1bdfa354e34863deca6097222e5c0b6313ac74c55112713ae6ac23c1a3
-        size: 5519914
+        url: https://mamedev.emulab.it/clrmamepro/binaries/cmp4036_32.zip
+        sha256: 06b07a6c2284668c0771f980c5905267e62b79faf35f30e9a3484314ce69474a
+        size: 5513173
         filename: clrmamepro.zip
       - type: extra-data
         only-arches:

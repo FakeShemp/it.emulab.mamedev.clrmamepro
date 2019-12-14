@@ -11,6 +11,7 @@
     <url type="help">https://mamedev.emulab.it/clrmamepro/docs/index.htm</url>
     <launchable>it.emulab.mamedev.clrmamepro.desktop</launchable>
     <releases>
+      <release date="2019-12-11" version="4.036"></release>
       <release date="2018-08-21" version="4.035"></release>
       <release date="2018-02-20" version="4.034"></release>
     </releases>
